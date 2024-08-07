@@ -7,6 +7,7 @@ import BackgroundWave from '@/assets/images/BackgroundWave'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { View } from '../View'
+import { useWallet } from '@/api/store/Wallet.context'
 
 type AnimatedBagroundProps = {
 	children: React.ReactNode
@@ -17,14 +18,7 @@ export default function AnimatedBackground(props: AnimatedBagroundProps) {
 	const scrollOffset = useScrollViewOffset(scrollRef)
 	const viewportHeight = Dimensions.get('window').height
 
-	const [refreshing, setRefreshing] = React.useState(false)
-
-	const onRefresh = React.useCallback(() => {
-		setRefreshing(true)
-		setTimeout(() => {
-			setRefreshing(false)
-		}, 2000)
-	}, [])
+	const { loading, getAll } = useWallet()
 
 	const backgroundSlide = useAnimatedStyle(() => {
 		return {
@@ -58,7 +52,12 @@ export default function AnimatedBackground(props: AnimatedBagroundProps) {
 				<BackgroundClouds />
 			</Animated.View>
 			<SafeAreaView style={{ backgroundColor: 'transparent' }}>
-				<Animated.ScrollView style={{ minHeight: viewportHeight }} ref={scrollRef} scrollEventThrottle={16} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
+				<Animated.ScrollView
+					style={{ minHeight: viewportHeight }}
+					ref={scrollRef}
+					scrollEventThrottle={16}
+					refreshControl={<RefreshControl refreshing={loading} onRefresh={getAll} />}
+				>
 					{children}
 				</Animated.ScrollView>
 			</SafeAreaView>
