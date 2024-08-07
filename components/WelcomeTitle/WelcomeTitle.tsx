@@ -2,11 +2,16 @@ import { Text } from '../Text'
 import { View } from '../View'
 import { WelcomeTitleStyles as styles } from './WelcomeTitle.styles'
 
-export default function WelcomeTitle() {
+export type WelcomeTitleType = {
+	title: string
+	subtitle?: string
+}
+export default function WelcomeTitle(props: WelcomeTitleType) {
+	const { title, subtitle } = props
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Welcome</Text>
-			<Text style={styles.subtitle}>Company Name</Text>
+			<Text style={styles.title}>{title}</Text>
+			{subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
 		</View>
 	)
 }

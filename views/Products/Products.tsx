@@ -1,18 +1,16 @@
 import AnimatedBackground from '@/components/AnimatedBackground/AnimatedBackground'
-import LoginHeader from '@/components/LoginHeader/LoginHeader'
+import ProductList from '@/components/ProductList/ProductList'
 import React from 'react'
 import { View } from '@/components/View'
-import WalletList from '@/components/WalletList/WalletList'
 import WelcomeTitle from '@/components/WelcomeTitle/WelcomeTitle'
-import { HomeStyles as styles } from './Home.styles'
+import { ProductsStyles as styles } from './Products.styles'
 
-export default function Home() {
+export default function Products() {
 	return (
 		<View style={styles.container}>
 			<AnimatedBackground>
-				<LoginHeader />
-				<WelcomeTitle title='Welcome' subtitle='Company Name'/>
-				<WalletList />
+				<WelcomeTitle title='Products'/>
+				<ProductList />
 			</AnimatedBackground>
 		</View>
 	)

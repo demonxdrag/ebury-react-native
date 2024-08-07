@@ -4,7 +4,6 @@ import Star from '@/assets/icons/Star'
 import { TabBarStyle } from '@/styles/TabBar.styles'
 import { Tabs } from 'expo-router'
 import Wallet from '@/assets/icons/Wallet'
-import { useClientOnlyValue } from '@/hooks/useClientOnlyValue'
 import { useColorScheme } from '@/hooks/useColorScheme'
 
 export default function TabLayout() {
@@ -14,7 +13,7 @@ export default function TabLayout() {
 		<Tabs
 			screenOptions={{
 				tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
-				headerShown: useClientOnlyValue(false, true),
+				headerShown: false,
 				tabBarStyle: TabBarStyle(colorScheme ?? 'light')
 			}}
 		>
