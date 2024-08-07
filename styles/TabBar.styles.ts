@@ -11,5 +11,6 @@ export const TabBarStyle = (colorScheme: 'light' | 'dark'): ViewStyle => ({
 	backgroundColor: Colors[colorScheme].paper,
 	paddingTop: 16,
 	paddingBottom: 32,
-	height: 89
+	height: 89,
+	elevation: 5
 })

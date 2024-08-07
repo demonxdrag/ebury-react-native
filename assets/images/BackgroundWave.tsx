@@ -5,7 +5,7 @@ import { useThemeColor } from '@/hooks/useTheme'
 
 function BackgroundWave() {
 	return (
-		<Svg width='390' height='173' fill='none' viewBox='0 0 390 173'>
+		<Svg width='100%' height='180' fill='none' viewBox='0 0 390 173'>
 			<Path
 				fill='url(#paint0_linear_965_503)'
 				fillRule='evenodd'
