@@ -13,7 +13,7 @@ class WalletRepository {
 		const res = await fetch(url)
 		const resJson = await res.json()
 
-		return resJson.data
+		return resJson
 	}
 
 	getAll = async (path: `/`): Promise<Wallet[]> => {
@@ -22,7 +22,7 @@ class WalletRepository {
 		const res = await fetch(url)
 		const resJson = await res.json()
 
-		return resJson.data
+		return resJson
 	}
 
 	post = async (path: `/`, payload: Wallet) => {
@@ -35,7 +35,7 @@ class WalletRepository {
 
 		const resJson = await res.json()
 
-		return resJson.data
+		return resJson
 	}
 
 	put = async (path: `/${string}`, payload: Partial<Wallet>) => {
@@ -48,7 +48,7 @@ class WalletRepository {
 
 		const resJson = await res.json()
 
-		return resJson.data
+		return resJson
 	}
 
 	delete = async (path: `/${string}`) => {
@@ -60,7 +60,7 @@ class WalletRepository {
 
 		const resJson = await res.json()
 
-		return resJson.data
+		return resJson
 	}
 }
 

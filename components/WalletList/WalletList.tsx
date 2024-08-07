@@ -11,8 +11,8 @@ export default function WalletList() {
 	const { wallets, getAll } = useWallet()
 
 	useEffect(() => {
-		if (!wallets) getAll()
-	}, [])
+		if (!wallets?.length) getAll()
+	}, [wallets])
 
 	return (
 		<BottomContainer>

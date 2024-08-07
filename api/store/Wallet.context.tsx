@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import { Wallet } from '../models/Wallet.model'
 import WalletRepository from '../repositories/Wallet.repository'
 
@@ -36,6 +37,10 @@ export function WalletProvider(props: React.PropsWithChildren) {
 	const [wallets, setWallets] = React.useState<Wallet[]>([])
 	const [loading, setLoading] = React.useState(false)
 
+	useEffect(() => {
+		console.log('wallets', wallets)
+	}, [wallets])
+
 	const repository = new WalletRepository('/wallets')
 
 	const get = async (id: string) => {
@@ -48,6 +53,7 @@ export function WalletProvider(props: React.PropsWithChildren) {
 	const getAll = async () => {
 		setLoading(true)
 		const response = await repository.getAll('/')
+		console.log('response', response)
 		setWallets(response)
 		setLoading(false)
 	}
