@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-export const ProductListStyles = StyleSheet.create({
+export const EmptyPageStyles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'column',

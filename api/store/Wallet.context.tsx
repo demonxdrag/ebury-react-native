@@ -1,7 +1,14 @@
-import React, { useEffect } from 'react'
-
+import React from 'react'
 import { Wallet } from '../models/Wallet.model'
 import WalletRepository from '../repositories/Wallet.repository'
+
+/**
+ * The purpose of this context is to provide both access to the wallets as well as
+ * givea ccess to the CRUD repository to control the wallets state.
+ *
+ * The idea of a context like this is to centralize everything regarding the data
+ * structure and the data store into a single point of access.
+ */
 
 export const WalletContext = React.createContext<{
 	wallets?: Wallet[]
@@ -21,7 +28,6 @@ export const WalletContext = React.createContext<{
 	delete: async () => null
 })
 
-// This hook can be used to access the current Wallet info.
 export function useWallet() {
 	const value = React.useContext(WalletContext)
 	if (process.env.NODE_ENV !== 'production') {
@@ -37,38 +43,41 @@ export function WalletProvider(props: React.PropsWithChildren) {
 	const [wallets, setWallets] = React.useState<Wallet[]>([])
 	const [loading, setLoading] = React.useState(false)
 
-	useEffect(() => {
-		console.log('wallets', wallets)
-	}, [wallets])
-
 	const repository = new WalletRepository('/wallets')
 
 	const get = async (id: string) => {
 		setLoading(true)
 		const response = await repository.get(`/${id}`)
-		setWallets(current => current.map(wallet => (wallet.account_id === id ? response : wallet)))
+		if (response) {
+			setWallets(current => current.map(wallet => (wallet.account_id === id ? response : wallet)))
+		}
 		setLoading(false)
 	}
 
 	const getAll = async () => {
 		setLoading(true)
 		const response = await repository.getAll('/')
-		console.log('response', response)
-		setWallets(response)
+		if (response?.length) {
+			setWallets(response)
+		}
 		setLoading(false)
 	}
 
 	const create = async (wallet: Wallet) => {
 		setLoading(true)
 		const response = await repository.post('/', wallet)
-		setWallets([...wallets, response])
+		if (response) {
+			setWallets([...wallets, response])
+		}
 		setLoading(false)
 	}
 
 	const update = async (wallet: Wallet) => {
 		setLoading(true)
 		const response = await repository.put(`/${wallet.account_id}`, wallet)
-		setWallets(current => current.map(wallet => (wallet.account_id === response.account_id ? response : wallet)))
+		if (response) {
+			setWallets(current => current.map(wallet => (wallet.account_id === response.account_id ? response : wallet)))
+		}
 		setLoading(false)
 	}
 

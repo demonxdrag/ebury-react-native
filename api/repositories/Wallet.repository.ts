@@ -1,4 +1,4 @@
-import { Wallet } from "../models/Wallet.model"
+import { Wallet } from '../models/Wallet.model'
 
 class WalletRepository {
 	private baseUrl: string
@@ -7,60 +7,88 @@ class WalletRepository {
 		this.baseUrl = `${process.env.EXPO_PUBLIC_API_URL}${url}`
 	}
 
-	get = async (path: `/${string}`): Promise<Wallet> => {
+	get = async (path: `/${string}`): Promise<Wallet | null> => {
 		const url = new URL(`${this.baseUrl}${path}`)
 
-		const res = await fetch(url)
-		const resJson = await res.json()
+		try {
+			const res = await fetch(url)
 
-		return resJson
+			// Basic status handling
+			if (res.status !== 200) return null
+
+			const resJson = await res.json()
+			return resJson
+		} catch {
+			return null
+		}
 	}
 
 	getAll = async (path: `/`): Promise<Wallet[]> => {
 		const url = new URL(`${this.baseUrl}${path}`)
+		try {
+			const res = await fetch(url)
 
-		const res = await fetch(url)
-		const resJson = await res.json()
+			// Basic status handling
+			if (res.status !== 200) return []
 
-		return resJson
+			const resJson = await res.json()
+			return resJson
+		} catch {
+			return []
+		}
 	}
 
-	post = async (path: `/`, payload: Wallet) => {
+	post = async (path: `/`, payload: Wallet): Promise<Wallet | null> => {
 		const url = `${this.baseUrl}${path}`
+		try {
+			const res = await fetch(url, {
+				method: 'POST',
+				body: JSON.stringify(payload)
+			})
 
-		const res = await fetch(url, {
-			method: 'POST',
-			body: JSON.stringify(payload)
-		})
+			// Basic status handling
+			if (res.status !== 201) return null
 
-		const resJson = await res.json()
-
-		return resJson
+			const resJson = await res.json()
+			return resJson
+		} catch {
+			return null
+		}
 	}
 
-	put = async (path: `/${string}`, payload: Partial<Wallet>) => {
+	put = async (path: `/${string}`, payload: Partial<Wallet>): Promise<Wallet | null> => {
 		const url = `${this.baseUrl}${path}`
+		try {
+			const res = await fetch(url, {
+				method: 'PUT',
+				body: JSON.stringify(payload)
+			})
 
-		const res = await fetch(url, {
-			method: 'PUT',
-			body: JSON.stringify(payload)
-		})
+			// Basic status handling
+			if (res.status !== 200) return null
 
-		const resJson = await res.json()
-
-		return resJson
+			const resJson = await res.json()
+			return resJson
+		} catch {
+			return null
+		}
 	}
 
-	delete = async (path: `/${string}`) => {
+	delete = async (path: `/${string}`): Promise<Wallet | null> => {
 		const url = `${this.baseUrl}${path}`
+		try {
+			const res = await fetch(url, {
+				method: 'DELETE'
+			})
+			
+			// Basic status handling
+			if (res.status !== 200) return null
 
-		const res = await fetch(url, {
-			method: 'DELETE'
-		})
-
-		const resJson = await res.json()
-
-		return resJson
+			const resJson = await res.json()
+			return resJson
+		} catch {
+			return null
+		}
 	}
 }
 
