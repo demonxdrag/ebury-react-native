@@ -25,23 +25,65 @@ export default function AnimatedBackground(props: AnimatedBagroundProps) {
 
 	const { loading, getAll } = useWallet()
 
+	const animationStart = -viewportHeight
+	const animationStartRatio = viewportHeight
+	const animationStop = 0
+	const animationStopValue = 0
+
+	const opacityStart = -viewportHeight
+	const opacityStartRatio = viewportHeight / 2
+	const opacityStop = 0
+	const opacityStopValue = 1
+	const opacityEnd = 0
+	const opacityEndRatio = 0
+
 	const backgroundSlide = useAnimatedStyle(() => {
+		const animationEnd = -viewportHeight / 2
+		const animationEndRatio = viewportHeight * -0.2
 		return {
-			transform: [{ translateY: interpolate(scrollOffset.value, [-viewportHeight, 0, viewportHeight], [-viewportHeight / 2, 0, viewportHeight * -0.2]) }]
+			transform: [
+				{
+					translateY: interpolate(
+						scrollOffset.value,
+						[animationStart, animationStop, animationStartRatio],
+						[animationEnd, animationStopValue, animationEndRatio]
+					)
+				}
+			]
 		}
 	})
 
 	const waveSlide = useAnimatedStyle(() => {
+		const animationEnd = -viewportHeight / 2
+		const animationEndRatio = viewportHeight * -0.7
 		return {
-			transform: [{ translateY: interpolate(scrollOffset.value, [-viewportHeight, 0, viewportHeight], [-viewportHeight / 2, 0, viewportHeight * -0.7]) }],
-			opacity: interpolate(scrollOffset.value, [-viewportHeight, 0, viewportHeight / 2], [0, 1, 0])
+			transform: [
+				{
+					translateY: interpolate(
+						scrollOffset.value,
+						[animationStart, animationStop, animationStartRatio],
+						[animationEnd, animationStopValue, animationEndRatio]
+					)
+				}
+			],
+			opacity: interpolate(scrollOffset.value, [opacityStart, opacityStop, opacityStartRatio], [opacityEnd, opacityStopValue, opacityEndRatio])
 		}
 	})
 
 	const cloudSlide = useAnimatedStyle(() => {
+		const animationEnd = -viewportHeight / 2
+		const animationEndRatio = viewportHeight * -0.5
 		return {
-			transform: [{ translateY: interpolate(scrollOffset.value, [-viewportHeight, 0, viewportHeight], [-viewportHeight / 2, 0, viewportHeight * -0.5]) }],
-			opacity: interpolate(scrollOffset.value, [-viewportHeight, 0, viewportHeight / 2], [0, 1, 0])
+			transform: [
+				{
+					translateY: interpolate(
+						scrollOffset.value,
+						[animationStart, animationStop, animationStartRatio],
+						[animationEnd, animationStopValue, animationEndRatio]
+					)
+				}
+			],
+			opacity: interpolate(scrollOffset.value, [opacityStart, opacityStop, opacityStartRatio], [opacityEnd, opacityStopValue, opacityEndRatio])
 		}
 	})
 

@@ -12,6 +12,14 @@ __Note__: The Web version does not support scrolling or the animations.
 
 __My recomendation__ is to use the [Expo Go](https://expo.dev/go) app since it is a very easy way to test code, however you could use emulators directly from the terminal too, as a last resort the web can be used.
 
+#### Patterns and Architecture Design
+
+This project was created using __Clean Architecture__ with _separation of concerns_ as the main goal.
+
+For managing _storage_ and _data_ the project uses __Contexts__.
+
+For managing the _Theme_ and other custom variables the project uses __Custom Hooks__ in addition to this the project requires the use of a custom hook to handle differences between web and mobile using the _device_ imports that Expo provides.
+
 ### Configuration
 
 The project uses a single environment variable, there should be a `.env` attached in the delivery however if that is not the case a `.env` file needs to be created in the root of the project containing the followinf:
