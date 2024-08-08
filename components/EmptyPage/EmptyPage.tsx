@@ -7,6 +7,11 @@ type EmptyPageType = {
 	title: string
 	text: string
 }
+
+/**
+ * Illustration to be used when no items of any sort are available or when a feature is
+ * yet to be implemented.
+ */
 export default function EmptyPage(props: EmptyPageType) {
 	const { title, text } = props
 	return (

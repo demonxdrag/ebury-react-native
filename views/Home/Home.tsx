@@ -7,6 +7,10 @@ import { WalletProvider } from '@/api/store/Wallet.context'
 import WelcomeTitle from '@/components/WelcomeTitle/WelcomeTitle'
 import { HomeStyles as styles } from './Home.styles'
 
+/**
+ * Main view of the app
+ * Contains the wallet list and the login header
+ */
 export default function Home() {
 	return (
 		<View style={styles.container}>

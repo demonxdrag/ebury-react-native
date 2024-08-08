@@ -9,7 +9,7 @@ import { useThemeColor } from '@/hooks/useTheme'
 import { useWallet } from '@/api/store/Wallet.context'
 
 /**
- * This component is responsible for displaying a list of wallets.
+ * This component is responsible for fetching and displaying a list of wallets.
  */
 export default function WalletList() {
 	const { wallets, loading, getAll } = useWallet()

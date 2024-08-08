@@ -12,6 +12,11 @@ import { useWallet } from '@/api/store/Wallet.context'
 type AnimatedBagroundProps = {
 	children: React.ReactNode
 }
+
+/**
+ * This function is a wrapper that creates an animated background behind the children.
+ * It adds a basic parallax effect on the background items.
+ */
 export default function AnimatedBackground(props: AnimatedBagroundProps) {
 	const { children } = props
 	const scrollRef = useAnimatedRef<Animated.ScrollView>()

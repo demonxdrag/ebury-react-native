@@ -6,6 +6,10 @@ export type WelcomeTitleType = {
 	title: string
 	subtitle?: string
 }
+
+/**
+ * This component has the title and subtitle to be shown in the main views of the app.
+ */
 export default function WelcomeTitle(props: WelcomeTitleType) {
 	const { title, subtitle } = props
 	return (

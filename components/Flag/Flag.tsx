@@ -7,6 +7,10 @@ import { FlagStyles as styles } from './Flag.styles'
 type FlagType = {
 	currency: Currency
 }
+
+/**
+ * Component that renders a flag image based on the currency code.
+ */
 export const Flag = (props: FlagType) => {
 	const { currency } = props
 
